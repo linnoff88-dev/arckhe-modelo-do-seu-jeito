@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Tu IA abierta rechaza lo que no debería? Ajusta el modelo a tu manera — kit gratis</title>
+<meta name="description" content="Kit gratis para ajustar una copia de un modelo de IA abierto: menos rechazos erróneos ante solicitudes inofensivas y un comportamiento a tu manera, comparándolo con el original.">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/modelo-do-seu-jeito/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/modelo-do-seu-jeito/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/modelo-do-seu-jeito/guia/es/">
+<meta property="og:title" content="¿Tu IA abierta rechaza lo que no debería? Ajusta el modelo a tu manera — kit gratis">
+<meta property="og:description" content="Kit gratis para ajustar una copia de un modelo de IA abierto: menos rechazos erróneos ante solicitudes inofensivas y un comportamiento a tu manera, comparándolo con el original.">
+<meta property="og:image" content="https://inematds.github.io/modelo-do-seu-jeito/guia/assets/banner-es.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#FACC15; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    --fill:#FACC15; --tint:rgba(250,204,21,.12); --ok:#7CE0C6; --bad:#F0918A;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#a16207; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    --fill:#FACC15; --tint:#FEF9C3; --ok:#0E6B55; --bad:#A83426;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  body.light pre .k{color:#f0c070}
+  body.light nav{background:rgba(246,247,249,.85)}
+  body.light .amb{color:var(--txt);background:linear-gradient(transparent 55%,#FACC15 55%)}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  body.light main a:not(.btn),body.light footer a{color:#854d0e;text-decoration:underline;text-decoration-color:#FACC15;text-decoration-thickness:3px}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  p code,li code,td code{font-size:.9em;background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:.05em .35em}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb);white-space:nowrap}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:var(--tint)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--fill);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  nav .links a.sec{white-space:nowrap}
+  @media(max-width:1360px){nav .links a.opt{display:none}}
+  @media(max-width:860px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(250,204,21,.18),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.15rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:44ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:66ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.95rem;margin:0}
+  .card p+p{margin-top:.6em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0;margin:.4em 0 0}
+  pre .c{color:#7d7d8a} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:28px}
+  .step>div{min-width:0}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--fill);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .5em}
+  .quem{display:inline-block;font-family:Sora;font-size:.75rem;letter-spacing:.06em;color:var(--txt);background:var(--tint);border:1px solid var(--line);border-radius:999px;padding:.1em .7em;margin-left:.5em;vertical-align:middle;font-weight:600}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:4px}
+  /* números */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+  @media(max-width:720px){.stats{grid-template-columns:1fr}}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .stat b{display:block;font:800 clamp(1.9rem,4vw,2.6rem)/1.05 Sora,sans-serif;letter-spacing:-.02em;color:var(--amb)}
+  body.light .stat b{color:var(--txt)}
+  .stat span{display:block;color:var(--mut);font-size:.93rem;margin-top:.5em}
+  .fonte{font-size:.86rem;color:var(--mut);margin-top:14px;max-width:80ch}
+  /* trocas */
+  .troca{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+  .troca:first-of-type{border-top:none}
+  .troca .n{width:64px;height:64px;border-radius:14px;border:1px solid var(--line);background:var(--card);display:flex;align-items:center;justify-content:center;font:800 1.6rem Sora,sans-serif;color:var(--amb)}
+  body.light .troca .n{color:var(--txt);background:var(--fill);border-color:var(--fill)}
+  .troca h3{font-size:1.3rem;margin-bottom:.35em}
+  .troca p{margin:.35em 0;max-width:72ch}
+  .troca .ex{margin-top:.8em;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--fill);border-radius:10px;padding:12px 16px;font-size:.95rem;color:var(--mut);max-width:76ch}
+  .troca .ex b{color:var(--txt)}
+  @media(max-width:540px){.troca{grid-template-columns:1fr}}
+  /* três finais */
+  .vs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px;max-width:900px}
+  @media(max-width:720px){.vs{grid-template-columns:1fr}}
+  .vs div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:.93rem}
+  .vs strong{display:block;font-family:Sora;margin-bottom:.25em}
+  .vs .r{display:block;margin-top:.5em;font-weight:600}
+  .vs .r.bad{color:var(--bad)} .vs .r.ok{color:var(--ok)}
+  .card ul{margin:8px 0 0;padding-left:20px}.card li{margin:5px 0}
+  /* prova */
+  .prova{background:var(--card);border:1px solid var(--amb);border-radius:16px;padding:26px 26px 22px;margin-top:6px}
+  body.light .prova{border-color:#EAB308}
+  .tl{list-style:none;margin:0;padding:0;counter-reset:t}
+  .tl li{position:relative;padding:0 0 18px 48px;counter-increment:t}
+  .tl li::before{content:counter(t);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:10px;background:var(--fill);color:#1a1206;font:800 .95rem/32px Sora,sans-serif;text-align:center}
+  .tl li::after{content:"";position:absolute;left:15px;top:36px;bottom:4px;width:2px;background:var(--line)}
+  .tl li:last-child::after{display:none}
+  .tl b{font-family:Sora}
+  blockquote{margin:6px 0 0;padding:14px 18px;border-left:3px solid var(--fill);background:var(--bg2);border-radius:0 10px 10px 0;font-size:1.02rem}
+  .prova .rod{font-size:.86rem;color:var(--mut);margin-top:14px}
+  /* parte técnica */
+  .techhead{background:var(--bg2);border-top:3px solid var(--fill);padding:58px 0 8px}
+  .techhead h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em;margin:.3em 0 0}
+  .techhead .sub{color:var(--mut);margin:.6em 0 1.2em;max-width:66ch}
+  .techzone{background:var(--bg2)}
+  .techzone .card{background:var(--card)}
+  .tbl{width:100%;border-collapse:collapse;font-size:.93rem}
+  .tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl th{font-family:Sora;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+  .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+  @media(max-width:600px){.tbl thead{display:none} .tbl tr{display:block;border-bottom:1px solid var(--line);padding:6px 0} .tbl tr:last-child{border-bottom:none} .tbl td{display:block;border:none;padding:4px 14px}}
+  .tabela{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .tabela table{width:100%;border-collapse:collapse}
+  .tabela th,.tabela td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  .tabela th{font-family:Sora,sans-serif;color:var(--amb)}
+  .tabela tr:last-child td{border-bottom:0}
+  @media(max-width:640px){.tabela thead{display:none}.tabela tr{display:block;padding:12px 14px;border-bottom:1px solid var(--line)}.tabela tr:last-child{border-bottom:0}.tabela td{display:block;padding:2px 0;border:0}.tabela td:last-child{color:var(--amb)}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top"><span class="emoji">🎛️</span> Modelo a Tu Manera</a>
+  <span class="sep">|</span>
+  <span class="clubpro">
+    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
+    <span class="sep">-</span>
+    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
+  </span>
+  <div class="links">
+    <a class="sec" href="#explicado">Qué ganas</a>
+    <a class="sec" href="#dia">En tu día a día</a>
+    <a class="sec opt" href="#como">Cómo funciona</a>
+    <a class="sec opt" href="#ideias">Ideas</a>
+    <a class="sec" href="#comecar">Cómo empezar</a>
+    <a class="sec" href="#base">Origen</a>
+    <a class="sec opt" href="#prova">Qué se ha comprobado</a>
+    <span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class="on" href="./">ES</a></span>
+    <button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    <a class="btn" href="https://github.com/inematds/modelo-do-seu-jeito" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></nav>
+
+<header class="hero" id="top">
+  <div class="glow"></div>
+  <div class="wrap">
+    <div>
+      <span class="chip">Para modelos de IA abiertos · usa Heretic, herramienta gratuita · kit gratis</span>
+      <h1>¿Tu IA abierta rechaza lo que no debería? <span class="amb">Ajusta el modelo a tu manera</span></h1>
+      <p class="lead">Usas en tu computadora un modelo abierto, es decir, uno cuyos archivos puedes descargar. Preguntas sobre historia o salud y recibes un «no puedo ayudar». En atención al cliente, promete un crédito que nadie aprobó. Con Modelo a Tu Manera, ajustas una copia y la comparas con el original antes de confiar en ella. No sirve para ChatGPT ni servicios parecidos.</p>
+      <div class="cta">
+        <a class="btn" href="#explicado">Qué puedes conseguir</a>
+        <a class="btn ghost" href="#comecar">Cómo empezar</a>
+      </div>
+    </div>
+    <figure><img src="../assets/banner-es.jpg" alt="Modelo a Tu Manera: un modelo abierto ajustado para rechazar menos solicitudes inofensivas y comportarse como necesitas"></figure>
+  </div>
+</header>
+
+<main>
+<section id="resumo" class="resumo"><div class="wrap">
+  <span class="chip">En una frase</span>
+  <p><strong>Este kit te ayuda a cambiar el comportamiento de una IA abierta, es decir, una cuyos archivos puedes descargar.</strong> Tiene dos caminos: reducir los rechazos erróneos ante solicitudes inofensivas y enseñar un comportamiento nuevo, como pedir los datos antes de hacer una promesa. Está pensado para quienes usan estos modelos y quieren demostrar que el cambio funcionó. Necesitas una computadora potente o alquilar una potente por internet, cuyo uso cuesta mientras está encendida. El kit todavía no se ha ejecutado en un modelo, así que el primer uso será una prueba.</p>
+  <figure style="margin:22px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000"><img src="../assets/banner-grade-es.jpg" alt="Lo que ofrece la guía: menos rechazos indebidos, ajuste de comportamiento, original intacto, antes y después, paso a paso e ideas para probar" style="display:block;width:100%"></figure>
+</div></section>
+
+<section id="explicado"><div class="wrap">
+  <span class="chip">Qué ganas</span>
+  <h2>Dos ajustes que <span class="amb">puedes probar</span></h2>
+  <p class="sub">Redactar mejor la solicitud resuelve muchas cosas. Cuando el problema se repite, puedes cambiar una copia del modelo y comprobar después si valió la pena.</p>
+  <div class="grid g2">
+    <div class="card"><h3>🔓 Camino 1: quitar restricciones erróneas</h3><p><strong>El problema:</strong> la IA detecta una palabra fuerte y se bloquea. Rechaza «cómo matar un proceso en la computadora» o una pregunta de historia para la escuela.</p><p><strong>El objetivo:</strong> responder con información cuando la solicitud es inofensiva. El kit solo usa ejemplos seguros.</p></div>
+    <div class="card"><h3>🧭 Camino 2: un comportamiento a tu manera</h3><p><strong>El problema:</strong> sin saber el precio ni la regla, la IA se inventa un valor y se lo promete al cliente.</p><p><strong>El objetivo:</strong> pedir el dato que falta y, cuando tenga toda la información, responder directamente con el valor correcto.</p></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="card"><h3>🛟 El original queda guardado</h3><p>El cambio se hace en una copia. La versión original queda intacta y el kit lo comprueba al final.</p></div>
+    <div class="card"><h3>⚖️ Una comparación justa</h3><p>El original, el original con una instrucción fuerte y la copia ajustada reciben las mismas preguntas y se evalúan con casos que no se usaron para el ajuste.</p></div>
+    <div class="card"><h3>💡 Solo editas si vale la pena</h3><p>Antes, el kit prueba una buena instrucción. Si eso resuelve el problema, ahorras tiempo y no modificas el modelo.</p></div>
+  </div>
+</div></section>
+
+<section id="base"><div class="wrap">
+  <span class="chip">De dónde viene</span>
+  <h2>La herramienta es <span class="amb">Heretic</span></h2>
+  <p class="sub">Heretic es un proyecto de código abierto creado por Philipp Emanuel Weidmann y colaboradores. Modifica modelos de IA sin tener que volver a entrenarlos por completo.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🧰 Lo que ya hace</h3><p>Reduce los rechazos y, con otras configuraciones, disminuye la adulación, el texto genérico, el humor y las respuestas largas.</p></div>
+    <div class="card"><h3>➕ Lo que añade este kit</h3><p>Ejemplos en portugués, los dos caminos listos para usar, una comparación con criterios de aprobación claros y una guía para quienes están empezando.</p></div>
+    <div class="card"><h3>🔗 Consulta la fuente</h3><p>El código, la documentación y la licencia están en la <a href="https://github.com/p-e-w/heretic" target="_blank" rel="noopener">página de Heretic en GitHub</a>. Lo que usamos está <a href="https://github.com/inematds/modelo-do-seu-jeito/blob/main/DO-HERETIC.md" target="_blank" rel="noopener">en esta lista (en portugués)</a>.</p></div>
+  </div>
+</div></section>
+
+<section id="dia"><div class="wrap">
+  <span class="chip">En tu día a día</span>
+  <h2>Cómo cambia tu <span class="amb">día</span></h2>
+  <p class="sub">Esto es lo que se busca en cada situación, para quienes usan un modelo propio. Por ahora son objetivos; el kit sirve para probarlos.</p>
+  <div class="grid g2">
+    <div class="card"><h3>📚 Docente que prepara una clase</h3><p><strong>Hoy:</strong> la IA rechaza un tema difícil de historia, aunque se trate de una tarea escolar.</p><p><strong>El objetivo:</strong> recibir una explicación basada en hechos que puedas comprobar.</p></div>
+    <div class="card"><h3>🩺 Una duda de salud en casa</h3><p><strong>Hoy:</strong> la respuesta no aporta nada solo por el tema.</p><p><strong>El objetivo:</strong> recibir información general, sin que la IA rechace la pregunta por el tema. No sustituye a un profesional.</p></div>
+    <div class="card"><h3>💬 Atención al cliente en una pequeña empresa</h3><p><strong>Hoy:</strong> el cliente se queja y la IA promete un reembolso que nadie aprobó.</p><p><strong>El objetivo:</strong> pedir el comprobante, el plan y la regla antes de responder. El ejemplo listo para usar es de una app de reservas y puedes adaptarlo a tu negocio.</p></div>
+    <div class="card"><h3>🧑‍💻 Técnico que usa términos habituales de su área</h3><p><strong>Hoy:</strong> «matar un proceso» le suena violento al modelo.</p><p><strong>El objetivo:</strong> entender el significado de la expresión y explicar cómo hacerlo.</p></div>
+  </div>
+</div></section>
+
+<section id="video"><div class="wrap">
+  <span class="chip">En video</span>
+  <h2>Entiende Modelo do Seu Jeito en 3 minutos</h2>
+  <p class="sub">El video está en portugués. Los ejemplos son ilustrativos: el kit todavía no se ha ejecutado en un modelo.</p>
+  <div class="card"><div style="position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;margin-top:10px"><iframe src="https://www.youtube-nocookie.com/embed/3U8jk69yt3M" title="Modelo do Seu Jeito — video explicativo" style="position:absolute;inset:0;width:100%;height:100%;border:0" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div></div>
+</div></section>
+
+<section id="como"><div class="wrap">
+  <span class="chip">Cómo funciona, sin tecnicismos</span>
+  <h2>Imagina una <span class="amb">mesa de mezclas</span></h2>
+  <p class="sub">No cambias de banda. Encuentras el canal que causa problemas y lo ajustas con cuidado, comprobando que el resto de la música siga sonando bien.</p>
+  <div class="prova">
+    <ol class="tl">
+      <li><b>Dos grupos de ejemplos</b><br><span class="mut">Por un lado, situaciones en las que el modelo actúa bien. Por otro, situaciones con el comportamiento que quieres cambiar.</span></li>
+      <li><b>Buscar la diferencia</b><br><span class="mut">Heretic compara lo que ocurre dentro del modelo en ambos casos, como quien busca el canal que causa el ruido.</span></li>
+      <li><b>El ajuste en la copia</b><br><span class="mut">Modifica los números de esa copia, sin volver a entrenar el modelo por completo.</span></li>
+      <li><b>Varias intensidades, dos puntuaciones</b><br><span class="mut">Como al sazonar, prueba distintas cantidades. Una puntuación mide el objetivo y la otra, cuánto se alejó el modelo del original.</span></li>
+      <li><b>Una prueba con preguntas nuevas</b><br><span class="mut">Eliges una versión y el kit la compara con la original usando preguntas que no formaron parte del ajuste.</span></li>
+    </ol>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card"><h3>☁️ Por qué no funciona con cualquier IA</h3><p>Necesitas tener los archivos del modelo. ChatGPT, Claude y otros servicios en línea no te dan esos archivos, ni siquiera mediante el acceso directo para programadores (la API). Los servicios que ofrecen modelos sin censura te dan su versión, no la tuya.</p></div>
+    <div class="card"><h3>⚠️ Lo que el kit no promete</h3><p>No hace que la IA sea más inteligente ni más precisa, y la edición puede empeorar otras respuestas. El camino para corregir los rechazos está pensado para errores ante solicitudes inofensivas, no para permitir solicitudes peligrosas.</p></div>
+  </div>
+</div></section>
+
+<section id="ideias"><div class="wrap">
+  <span class="chip">Sugerencias</span>
+  <h2>Otras cosas que <span class="amb">puedes intentar ajustar</span></h2>
+  <p class="sub">El kit incluye los dos primeros caminos, listos para usar. Los demás son ideas que puedes probar, aunque este proyecto todavía no las ha comprobado. Una «receta» es una configuración lista que ya viene en Heretic.</p>
+  <div class="tabela"><table>
+    <thead><tr><th>Qué ajustar</th><th>El problema</th><th>Cómo empezar</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Rechazos</strong></td><td>Se bloquea ante una solicitud inofensiva</td><td>Listo en este kit</td></tr>
+      <tr><td><strong>Preguntar antes</strong></td><td>Promete o inventa datos que no tiene</td><td>Listo en este kit</td></tr>
+      <tr><td><strong>Adulación</strong></td><td>Está de acuerdo con todo y elogia demasiado</td><td>Usar la receta lista</td></tr>
+      <tr><td><strong>Texto genérico de IA</strong></td><td>«¡Qué buena pregunta!» y frases grandilocuentes</td><td>Usar la receta lista</td></tr>
+      <tr><td><strong>Formato</strong></td><td>Respuestas largas cuando bastaba con poco</td><td>Usar la receta lista para acortar</td></tr>
+      <tr><td><strong>Avisos</strong></td><td>«Como IA...» a cada rato</td><td>Hacer una lista de las frases que deben desaparecer</td></tr>
+      <tr><td><strong>Tono</strong></td><td>Demasiado formal, informal o seco</td><td>Crear ejemplos de ambos tonos</td></tr>
+      <tr><td><strong>Personaje</strong></td><td>No cumple el papel que quieres</td><td>Mostrar el papel correcto y el incorrecto</td></tr>
+      <tr><td><strong>Lenguaje</strong></td><td>Un vocabulario que no va contigo</td><td>Crear pares de ejemplos</td></tr>
+      <tr><td><strong>Enfoque</strong></td><td>Presta atención a lo que no importa</td><td>Definir qué debe aparecer</td></tr>
+      <tr><td><strong>Humor y emoción</strong></td><td>Un chiste o un tono fuera de lugar</td><td>Usar las recetas listas</td></tr>
+    </tbody>
+  </table></div>
+  <p class="fonte">Regla de oro: cambia una cosa a la vez, siempre a partir del original, y define antes qué no puede empeorar. Consulta <a href="https://github.com/inematds/modelo-do-seu-jeito/blob/main/SUGESTOES.md" target="_blank" rel="noopener">la tabla completa (en portugués)</a>.</p>
+</div></section>
+
+<section id="passos"><div class="wrap">
+  <span class="chip">El proceso completo</span>
+  <h2>Del modelo original a una <span class="amb">copia aprobada</span></h2>
+  <div class="grid g3">
+    <div class="card"><h3>1. Elige</h3><p>Define el modelo abierto y qué cambio quieres hacer.</p></div>
+    <div class="card"><h3>2. Comprueba el equipo</h3><p>Revisa si tienes suficiente memoria y espacio antes de descargarlo.</p></div>
+    <div class="card"><h3>3. Guarda el original</h3><p>El kit registra una huella digital: un código que cambia si se modifica cualquier archivo.</p></div>
+    <div class="card"><h3>4. Mide el problema</h3><p>Si no existe, el proceso termina aquí.</p></div>
+    <div class="card"><h3>5. Prueba una buena instrucción</h3><p>A veces basta con pedirlo mejor.</p></div>
+    <div class="card"><h3>6. Haz una prueba piloto</h3><p>Unas pocas pruebas muestran si vale la pena seguir.</p></div>
+    <div class="card"><h3>7. Ejecuta el ajuste</h3><p>Heretic busca la intensidad más adecuada y tú eliges una versión.</p></div>
+    <div class="card"><h3>8. Compara todo</h3><p>El original, la instrucción y la copia, uno al lado del otro.</p></div>
+    <div class="card"><h3>9. Lee y decide</h3><p>Comprueba las respuestas reales y haz preguntas nuevas.</p></div>
+  </div>
+</div></section>
+
+<section id="comecar"><div class="wrap">
+  <span class="chip">Cómo empezar</span>
+  <h2>Pídele a un asistente que <span class="amb">te guíe en el proceso</span></h2>
+  <p class="sub">Los ejemplos listos del kit están en portugués; el asistente puede ayudarte a traducirlos. <a href="https://code.claude.com/docs" target="_blank" rel="noopener">Claude Code</a> y <a href="https://developers.openai.com/codex" target="_blank" rel="noopener">Codex</a> son asistentes que trabajan dentro de tu computadora. Necesitas tener uno instalado y una cuenta activa. No es el modelo que vas a ajustar: es quien lee el kit, revisa tu equipo y explica cada paso.</p>
+  <div class="grid g3">
+    <div class="card"><h3>1. Abre el asistente</h3><p>Crea una carpeta vacía y abre el asistente allí. La instalación y los pasos para abrirlo están en los enlaces de arriba y pueden requerir el uso de la terminal, la ventana de comandos de la computadora.</p></div>
+    <div class="card"><h3>2. Pega la solicitud</h3><p>El asistente leerá el kit, comprobará la computadora y te preguntará qué quieres cambiar.</p></div>
+    <div class="card"><h3>3. Acepta lo que te parezca bien</h3><p>La solicitud indica que debe esperar tu aprobación. Lee el plan antes de aceptarlo.</p></div>
+  </div>
+  <div class="pedido" style="margin-top:20px;position:relative">
+<pre id="pedidoTxt" style="white-space:pre-wrap">Lee el repositorio https://github.com/inematds/modelo-do-seu-jeito, sobre todo el README.
+Después, comprueba si mi computadora puede ejecutar el proceso y pregúntame qué modelo abierto quiero usar
+y qué cambio quiero hacer: menos rechazos indebidos o un ajuste de comportamiento.
+Explícame con palabras sencillas qué se instalará y descargará, cuánto ocupará y qué riesgos hay.
+No instales, descargues ni cambies nada antes de que te dé el visto bueno. Mantén intacto el modelo original.</pre>
+    <button class="btn" id="copiarPedido" type="button">Copiar la solicitud</button>
+  </div>
+  <div class="card" style="margin-top:16px"><h3>🛠️ ¿Trabajas en el área técnica?</h3><p>Los comandos, los archivos y el proceso completo están en las <a href="https://github.com/inematds/modelo-do-seu-jeito/blob/main/README.es.md" target="_blank" rel="noopener">instrucciones técnicas del proyecto</a>.</p></div>
+</div></section>
+
+<section id="prova"><div class="wrap">
+  <span class="chip">Qué se ha comprobado</span>
+  <h2>Sin resultados inventados: <span class="amb">la prueba real está pendiente</span></h2>
+  <p class="sub">Preferimos mostrar con exactitud en qué punto está el proyecto.</p>
+  <div class="grid g2">
+    <div class="card"><h3>✅ Ya comprobado</h3><p>Las reglas de evaluación, los ejemplos y la comparación pasaron pruebas automáticas con una versión simulada de Heretic. El verificador de configuraciones de Heretic aceptó las configuraciones, sin ejecutar ningún modelo.</p></div>
+    <div class="card"><h3>⏳ Aún no se ha hecho</h3><p>Este kit todavía no ha descargado ni modificado ningún modelo. Por eso, aún no hay cifras para mostrar sobre mejoras, tiempo o memoria.</p></div>
+  </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <span class="chip">Preguntas frecuentes</span>
+  <h2>Antes de <span class="amb">empezar</span></h2>
+  <div class="grid g2">
+    <div class="card"><h3>¿Necesito saber programar?</h3><p>No, pero este es un proyecto avanzado. El asistente te guía paso a paso; tienes que abrirlo, leer el plan y decidir qué apruebas. Si no conoces la terminal, empieza con calma.</p></div>
+    <div class="card"><h3>¿Puedo ajustar ChatGPT o Claude?</h3><p>No. Solo puedes ajustar modelos abiertos cuyos archivos puedas descargar. Claude Code solo participa como asistente para ayudarte con el proceso.</p></div>
+    <div class="card"><h3>¿Esto elimina todas las protecciones de la IA?</h3><p>Ese no es el objetivo. El kit busca corregir rechazos erróneos ante solicitudes inofensivas. Aun así, la edición puede tener efectos más allá de los ejemplos; por eso requiere comparaciones y cuidado.</p></div>
+    <div class="card"><h3>¿Puedo volver atrás?</h3><p>Sí. El original queda separado y puedes borrar la copia ajustada.</p></div>
+    <div class="card"><h3>¿Funciona en Windows?</h3><p>Los comandos se escribieron para Linux y Mac, y no se ha comprobado su funcionamiento en Windows. Pídele al asistente que evalúe tu caso antes de empezar.</p></div>
+    <div class="card"><h3>¿Cuánto cuesta?</h3><p>El kit es gratis. Tú pagas la cuenta del asistente y el uso de tu computadora, o de la que alquiles.</p></div>
+    <div class="card"><h3>¿Qué computadora necesito?</h3><p>Depende del modelo. Según los cálculos del kit, un modelo de 8 GB necesita alrededor de 16 GB de memoria y 24 GB libres en disco. Una tarjeta gráfica potente ayuda mucho.</p></div>
+  </div>
+  <p class="fonte" style="margin-top:22px">Y tú, ¿qué rechaza o promete tu modelo que más dificulta tu trabajo? Gratis en inema.club, directamente en internet.</p>
+</div></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="pill">Heretic</div><div class="pill">Código abierto</div>
+    <p style="margin-top:18px">Modelo a Tu Manera · gratis en inema.club, directamente en internet ·
+      <a href="https://github.com/inematds/modelo-do-seu-jeito">inematds/modelo-do-seu-jeito</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='modelo-do-seu-jeito-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    try{ if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; } }catch(e){}
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      try{ localStorage.setItem(KEY, light?'light':'dark'); }catch(e){}
+    });
+  })();
+  (function(){
+    var bt=document.getElementById('copiarPedido'), tx=document.getElementById('pedidoTxt');
+    if(!bt||!tx) return;
+    bt.addEventListener('click',function(){
+      try{ navigator.clipboard.writeText(tx.textContent).then(function(){ bt.textContent='Copiado ✓'; setTimeout(function(){bt.textContent='Copiar la solicitud';},2000); }); }catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>

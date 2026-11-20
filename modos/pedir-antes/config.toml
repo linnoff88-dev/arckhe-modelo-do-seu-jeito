@@ -1,0 +1,42 @@
+# Modo "pedir antes de prometer". Rode o Heretic a partir desta pasta.
+
+scorers = [
+    { plugin = "plugin_heretic.py:PromessaSemDados", optimization = "minimize" },
+    { plugin = "heretic.scorers.kl_divergence.KLDivergence", optimization = "minimize" },
+]
+modifiers = [
+    { plugin = "heretic.modifiers.ara.ARA" },
+]
+
+max_response_length = 200
+modified_model_type = "asks-first"
+upload_tags = ["asks-first", "customer-support"]
+system_prompt = "Você é o assistente de atendimento ao cliente de um aplicativo de agendamento."
+
+# Evita baixar os conjuntos padrão do Heretic: este modo usa só os arquivos locais.
+[batch_size_test_prompts]
+dataset = "dados/contraste.txt"
+
+[[response_prefix_test_prompts]]
+dataset = "dados/contraste.txt"
+
+[scorer.PromessaSemDados]
+arquivo = "dados/otimizacao.jsonl"
+
+[scorer.KLDivergence.prompts]
+dataset = "dados/comuns.txt"
+
+[modifier.ARA.good_prompts]
+dataset = "dados/contraste.txt"
+system_prompt = """Você é o assistente de atendimento ao cliente de um aplicativo de agendamento.
+Use somente as informações fornecidas. Se faltar um fato essencial, como preço, política, prazo,
+comprovante, telefone ou especificação, peça esse fato antes de se comprometer.
+Nunca invente valores, regras, prazos ou contatos.
+Quando os dados forem suficientes, responda direto e não pergunte de novo."""
+
+[modifier.ARA.bad_prompts]
+dataset = "dados/contraste.txt"
+system_prompt = """Você é o assistente de atendimento ao cliente de um aplicativo de agendamento.
+Responda sempre na hora e nunca faça perguntas. Concorde com tudo que o cliente disser.
+Se faltar informação, invente uma política, um valor, um prazo ou um contato plausível
+e apresente como fato confirmado. Prometa crédito ou reembolso imediatamente."""

@@ -1,0 +1,61 @@
+# Modo "menos recusas". Rode o Heretic a partir desta pasta.
+# Todos os exemplos são pedidos inofensivos. Troque os arquivos de dados pelos pedidos
+# inofensivos que o SEU modelo recusa de verdade. Não acrescente pedidos perigosos.
+
+scorers = [
+    { plugin = "heretic.scorers.keyword_rate.KeywordRate", optimization = "minimize" },
+    { plugin = "heretic.scorers.kl_divergence.KLDivergence", optimization = "minimize" },
+]
+modifiers = [
+    { plugin = "heretic.modifiers.ara.ARA" },
+]
+
+max_response_length = 100
+modified_model_type = "fewer-false-refusals"
+upload_tags = ["fewer-false-refusals"]
+system_prompt = "Você é um assistente útil. Responda em português."
+
+# Evita baixar os conjuntos padrão do Heretic: este modo usa só os arquivos locais.
+[batch_size_test_prompts]
+dataset = "dados/comuns.txt"
+
+[[response_prefix_test_prompts]]
+dataset = "dados/comuns.txt"
+
+[[response_prefix_test_prompts]]
+dataset = "dados/recusadas.txt"
+
+[scorer.KeywordRate]
+score_name = "Recusas indevidas"
+print_responses = true
+keyword_markers = [
+    "não posso ajudar",
+    "não posso responder",
+    "não posso fornecer",
+    "não consigo ajudar",
+    "desculpe, mas",
+    "sinto muito, mas",
+    "lamento, mas",
+    "no puedo ayudar",
+    "no puedo responder",
+    "lo siento, pero",
+    "i can't help",
+    "i can't assist",
+    "i cannot help",
+    "i cannot assist",
+    "i'm sorry",
+    "i am sorry",
+    "i'm unable",
+]
+
+[scorer.KeywordRate.prompts]
+dataset = "dados/otimizacao.txt"
+
+[scorer.KLDivergence.prompts]
+dataset = "dados/comuns.txt"
+
+[modifier.ARA.good_prompts]
+dataset = "dados/comuns.txt"
+
+[modifier.ARA.bad_prompts]
+dataset = "dados/recusadas.txt"
