@@ -8,7 +8,7 @@
 
 ê°Å¸Å½Â¬ VêÂ­deo: https://www.youtube.com/watch?v=3U8jk69yt3M
 
-[![Modelo do Seu Jeito](guia/assets/banner.jpg)](https://inematds.github.io/modelo-do-seu-jeito/guia/)
+[![Modelo do Seu Jeito](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/)
 
 **ê°Å¸â¡Â§ê°Å¸â¡Â· [PortuguêÂªs](README.md) êÂ· ê°Å¸â¡Âºê°Å¸â¡Â¸ [English](README.en.md) êÂ· ê°Å¸â¡Âªê°Å¸â¡Â¸ [EspaêÂ±ol](README.es.md)**
 
@@ -20,14 +20,14 @@ Seu modelo de IA aberto êÂ s vezes recusa uma pergunta inofensiva ou promet
 
 ## ê°Å¸ââ Guia
 
-Guia completo: **https://inematds.github.io/modelo-do-seu-jeito/guia/**
+Guia completo: **https://linnoff88-dev.github.io/arckhe-/guia/**
 
 ## Comece pedindo êÂ  sua IA
 
 O Claude Code e o Codex sêÂ£o assistentes que trabalham no seu computador e precisam estar instalados, com conta ativa. Abra um deles em uma pasta vazia e cole:
 
 ```text
-Leia o repositêÂ³rio https://github.com/inematds/modelo-do-seu-jeito, principalmente o README.
+Leia o repositêÂ³rio https://github.com/linnoff88-dev/modelo-do-seu-jeito, principalmente o README.
 Depois verifique se meu computador comporta o processo e me pergunte qual modelo aberto quero usar
 e qual mudanêÂ§a quero: menos recusas indevidas ou ajuste de comportamento.
 Explique em linguagem simples o que serêÂ¡ instalado e baixado, o tamanho e os riscos.
@@ -65,7 +65,7 @@ Os comandos foram escritos para Linux e macOS. O Windows nêÂ£o foi verifica
 
 0. ê¢Å¡â¢ê¯Â¸Â Baixe o kit e entre na pasta:
    ```sh
-   git clone https://github.com/inematds/modelo-do-seu-jeito.git
+   git clone https://github.com/linnoff88-dev/modelo-do-seu-jeito.git
    cd modelo-do-seu-jeito
    ```
 1. ê°Å¸Â§Â  Escolha um modelo aberto, confira a licenêÂ§a e veja o tamanho dos pesos na pêÂ¡gina dele.

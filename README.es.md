@@ -2,7 +2,7 @@
 
 🎬 Vídeo: https://www.youtube.com/watch?v=3U8jk69yt3M
 
-[![Modelo a Tu Manera](guia/assets/banner-es.jpg)](https://inematds.github.io/modelo-do-seu-jeito/guia/es/)
+[![Modelo a Tu Manera](guia/assets/banner-es.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/es/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -14,14 +14,14 @@
 
 ## 📖 Guía
 
-Guía completa: **https://inematds.github.io/modelo-do-seu-jeito/guia/es/**
+Guía completa: **https://linnoff88-dev.github.io/arckhe-/guia/es/**
 
 ## Empieza pidiéndoselo a tu IA
 
 Claude Code y Codex son asistentes que trabajan en tu computadora; deben estar instalados y tener una cuenta activa. Abre uno de ellos en una carpeta vacía y pega:
 
 ```text
-Lee el repositorio https://github.com/inematds/modelo-do-seu-jeito, especialmente el README.
+Lee el repositorio https://github.com/linnoff88-dev/modelo-do-seu-jeito, especialmente el README.
 Después comprueba si mi computadora puede ejecutar el proceso y pregúntame qué modelo abierto quiero usar
 y qué cambio quiero: menos rechazos indebidos o ajuste de comportamiento.
 Explícame en lenguaje sencillo qué se instalará y descargará, cuánto ocupará y cuáles son los riesgos.
@@ -59,7 +59,7 @@ Los comandos se escribieron para Linux y macOS. Windows no se ha verificado.
 
 0. ⚙️ Descarga el kit y entra en la carpeta:
    ```sh
-   git clone https://github.com/inematds/modelo-do-seu-jeito.git
+   git clone https://github.com/linnoff88-dev/modelo-do-seu-jeito.git
    cd modelo-do-seu-jeito
    ```
 1. 🧠 Elige un modelo abierto, comprueba su licencia y consulta el tamaño de los pesos en su página.

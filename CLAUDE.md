@@ -2,7 +2,7 @@
 
 Kit e guia para ajustar uma cópia de um modelo aberto com o Heretic, em dois modos: menos recusas indevidas e ajuste de comportamento.
 
-- Autor dos commits: `inematds <inematds@gmail.com>`.
+- Autor dos commits: `linnoff88-dev <linnoff88-dev@gmail.com>`.
 - Nada foi executado em modelo. Nêo apresentar resultado medido antes de existir um teste real.
 - Baixar ou carregar modelo nesta máquina exige aprovaçêo explícita do Nei.
 - O modo de recusas usa só exemplos inofensivos. Nêo acrescentar pedidos perigosos.

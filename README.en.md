@@ -2,7 +2,7 @@
 
 🎬 Vídeo: https://www.youtube.com/watch?v=3U8jk69yt3M
 
-[![Model Your Way](guia/assets/banner-en.jpg)](https://inematds.github.io/modelo-do-seu-jeito/guia/en/)
+[![Model Your Way](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/en/)
 
 **🇧🇷 [Português](README.md) · 🇺🇸 [English](README.en.md) · 🇪🇸 [Español](README.es.md)**
 
@@ -14,14 +14,14 @@ Does your open AI model sometimes refuse a harmless question or promise somethin
 
 ## 📖 Guide
 
-Complete guide: **https://inematds.github.io/modelo-do-seu-jeito/guia/en/**
+Complete guide: **https://linnoff88-dev.github.io/arckhe-/guia/en/**
 
 ## Start by asking your AI
 
 Claude Code and Codex are assistants that work on your computer. They need to be installed and have an active account. Open one of them in an empty folder and paste:
 
 ```text
-Read the repository https://github.com/inematds/modelo-do-seu-jeito, especially the README.
+Read the repository https://github.com/linnoff88-dev/modelo-do-seu-jeito, especially the README.
 Then check whether my computer can handle the process and ask me which open model I want to use
 and which change I want: fewer inappropriate refusals or behavior adjustment.
 Explain in simple language what will be installed and downloaded, how large it is, and the risks.
@@ -59,7 +59,7 @@ The commands are written for Linux and macOS. Windows has not been verified.
 
 0. ⚙️ Download the kit and enter the folder:
    ```sh
-   git clone https://github.com/inematds/modelo-do-seu-jeito.git
+   git clone https://github.com/linnoff88-dev/modelo-do-seu-jeito.git
    cd modelo-do-seu-jeito
    ```
 1. 🧠 Choose an open model, check its license, and check the size of its weights on the model’s page.
