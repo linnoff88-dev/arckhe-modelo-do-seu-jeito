@@ -82,7 +82,7 @@ The commands are written for Linux and macOS. Windows has not been verified.
    python ../../kit/responder.py --modelo ../../modelos/original --instrucao instrucao-forte.txt --saida ../../respostas/instruido.jsonl
    python ../../kit/avaliar.py --original ../../respostas/original.jsonl --instruido ../../respostas/instruido.jsonl
    ```
-   If the output is `NADA A CORRIGIR`, stop here. If it is `A INSTRUÇÃO RESOLVE`, use the instruction and do not edit the model.
+   If the output is `NADA A CORRIGIR`, stop here. If it is `A INSTRUÇêO RESOLVE`, use the instruction and do not edit the model.
 8. ⚙️ Run a short pilot: `heretic --n-trials 12 --n-startup-trials 6 --model ../../modelos/original`
 9. 🧠 Heretic shows the best results. Both scores should be low: the objective score and the score for deviation from the original (KL). The pilot is promising if the objective score drops without deviation spiking. To continue, choose `Run additional trials` in the menu and request more trials. Heretic defaults to 100 trials total. Then choose a result and save it to `../../modelos/ajustado`. With the default configuration, Heretic estimates 30 to 40 minutes for this model on an RTX 3090. This kit has not measured the time.
 10. ⚙️ Collect responses from the copy and compare all three versions:

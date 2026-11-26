@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Confere se a máquina comporta o ajuste, sem instalar nada e sem carregar modelo.
 
-Os limites são estimativas de folga, não medições deste kit.
+Os limites sêo estimativas de folga, nêo medições deste kit.
 Saída: 0 = pode tentar, 1 = falta recurso.
 """
 
@@ -58,15 +58,15 @@ def main():
     print(f"Python: {platform.python_version()}")
     print(f"Memória: {'desconhecida' if memoria is None else f'{memoria:.0f} GB'}")
     print(f"Disco livre: {disco:.0f} GB")
-    print("Placa NVIDIA: " + (", ".join(f"{g:.0f} GB" for g in placas) or "não encontrada"))
+    print("Placa NVIDIA: " + (", ".join(f"{g:.0f} GB" for g in placas) or "nêo encontrada"))
     if platform.system() == "Darwin":
-        print("Mac: o desempenho depende da memória unificada e não foi verificado por este kit.")
+        print("Mac: o desempenho depende da memória unificada e nêo foi verificado por este kit.")
 
     faltas = problemas(tuple(sys.version_info[:2]), memoria, disco, args.pesos_gb)
     for falta in faltas:
         print("FALTA: " + falta)
     print("Sem placa dedicada o ajuste tende a ser muito lento." if not placas and platform.system() != "Darwin" else "")
-    print("PODE TENTAR" if not faltas else "NÃO RECOMENDADO")
+    print("PODE TENTAR" if not faltas else "NêO RECOMENDADO")
     return 1 if faltas else 0
 
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tira a impressão digital de uma pasta de modelo e confere se ela mudou.
+"""Tira a impressêo digital de uma pasta de modelo e confere se ela mudou.
 
   python impressao.py gerar modelos/original impressao-original.json
   python impressao.py conferir modelos/original impressao-original.json

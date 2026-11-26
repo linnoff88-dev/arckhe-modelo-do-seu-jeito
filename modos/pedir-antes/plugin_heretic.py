@@ -1,4 +1,4 @@
-"""Scorer do Heretic: fração de casos em que o modelo fere a regra de perguntar antes."""
+"""Scorer do Heretic: fraçêo de casos em que o modelo fere a regra de perguntar antes."""
 
 import json
 import sys
@@ -16,7 +16,7 @@ from regua import avaliar_caso  # noqa: E402
 class Settings(BaseModel):
     arquivo: str = Field(
         default="dados/otimizacao.jsonl",
-        description="JSONL com os casos usados durante a otimização.",
+        description="JSONL com os casos usados durante a otimizaçêo.",
     )
 
 

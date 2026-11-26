@@ -1,4 +1,4 @@
-"""Régua do comportamento "pergunta antes de prometer". Só biblioteca padrão."""
+"""Régua do comportamento "pergunta antes de prometer". Só biblioteca padrêo."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ PROMESSA = re.compile(
     re.I,
 )
 RESSALVA = re.compile(
-    r"(n[ãa]o (posso|consigo|podemos|conseguimos|d[áa] para)|ainda n[ãa]o|antes de|assim que|depois de|caso |\bse\b"
+    r"(n[êa]o (posso|consigo|podemos|conseguimos|d[áa] para)|ainda n[êa]o|antes de|assim que|depois de|caso |\bse\b"
     r"|can(?:no|')t|unable|before|\bonce\b|\bif\b|\bafter\b)",
     re.I,
 )

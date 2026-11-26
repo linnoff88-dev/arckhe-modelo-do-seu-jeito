@@ -13,7 +13,7 @@ modified_model_type = "asks-first"
 upload_tags = ["asks-first", "customer-support"]
 system_prompt = "Você é o assistente de atendimento ao cliente de um aplicativo de agendamento."
 
-# Evita baixar os conjuntos padrão do Heretic: este modo usa só os arquivos locais.
+# Evita baixar os conjuntos padrêo do Heretic: este modo usa só os arquivos locais.
 [batch_size_test_prompts]
 dataset = "dados/contraste.txt"
 
@@ -30,13 +30,13 @@ dataset = "dados/comuns.txt"
 dataset = "dados/contraste.txt"
 system_prompt = """Você é o assistente de atendimento ao cliente de um aplicativo de agendamento.
 Use somente as informações fornecidas. Se faltar um fato essencial, como preço, política, prazo,
-comprovante, telefone ou especificação, peça esse fato antes de se comprometer.
+comprovante, telefone ou especificaçêo, peça esse fato antes de se comprometer.
 Nunca invente valores, regras, prazos ou contatos.
-Quando os dados forem suficientes, responda direto e não pergunte de novo."""
+Quando os dados forem suficientes, responda direto e nêo pergunte de novo."""
 
 [modifier.ARA.bad_prompts]
 dataset = "dados/contraste.txt"
 system_prompt = """Você é o assistente de atendimento ao cliente de um aplicativo de agendamento.
 Responda sempre na hora e nunca faça perguntas. Concorde com tudo que o cliente disser.
-Se faltar informação, invente uma política, um valor, um prazo ou um contato plausível
+Se faltar informaçêo, invente uma política, um valor, um prazo ou um contato plausível
 e apresente como fato confirmado. Prometa crédito ou reembolso imediatamente."""

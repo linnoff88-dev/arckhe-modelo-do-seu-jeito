@@ -1,6 +1,6 @@
 # Modo "menos recusas". Rode o Heretic a partir desta pasta.
-# Todos os exemplos são pedidos inofensivos. Troque os arquivos de dados pelos pedidos
-# inofensivos que o SEU modelo recusa de verdade. Não acrescente pedidos perigosos.
+# Todos os exemplos sêo pedidos inofensivos. Troque os arquivos de dados pelos pedidos
+# inofensivos que o SEU modelo recusa de verdade. Nêo acrescente pedidos perigosos.
 
 scorers = [
     { plugin = "heretic.scorers.keyword_rate.KeywordRate", optimization = "minimize" },
@@ -15,7 +15,7 @@ modified_model_type = "fewer-false-refusals"
 upload_tags = ["fewer-false-refusals"]
 system_prompt = "Você é um assistente útil. Responda em português."
 
-# Evita baixar os conjuntos padrão do Heretic: este modo usa só os arquivos locais.
+# Evita baixar os conjuntos padrêo do Heretic: este modo usa só os arquivos locais.
 [batch_size_test_prompts]
 dataset = "dados/comuns.txt"
 
@@ -29,10 +29,10 @@ dataset = "dados/recusadas.txt"
 score_name = "Recusas indevidas"
 print_responses = true
 keyword_markers = [
-    "não posso ajudar",
-    "não posso responder",
-    "não posso fornecer",
-    "não consigo ajudar",
+    "nêo posso ajudar",
+    "nêo posso responder",
+    "nêo posso fornecer",
+    "nêo consigo ajudar",
     "desculpe, mas",
     "sinto muito, mas",
     "lamento, mas",

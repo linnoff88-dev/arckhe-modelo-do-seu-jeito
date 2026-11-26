@@ -2,7 +2,7 @@
 """Coleta as respostas de um modelo. Rode dentro da pasta do modo.
 
 Todos os modelos recebem as mesmas instruções e os mesmos ajustes. Com --instrucao, o texto
-do arquivo substitui a instrução de sistema: é o teste "e se bastasse pedir melhor?".
+do arquivo substitui a instruçêo de sistema: é o teste "e se bastasse pedir melhor?".
 """
 
 import argparse
@@ -17,7 +17,7 @@ def main():
     ap.add_argument("--modelo", required=True, help="pasta local do modelo")
     ap.add_argument("--saida", required=True, type=Path)
     ap.add_argument("--casos", default="dados/avaliacao.jsonl", type=Path)
-    ap.add_argument("--instrucao", type=Path, help="arquivo com uma instrução de sistema alternativa")
+    ap.add_argument("--instrucao", type=Path, help="arquivo com uma instruçêo de sistema alternativa")
     ap.add_argument("--limite", type=int, default=400, help="máximo de tokens por resposta")
     args = ap.parse_args()
 

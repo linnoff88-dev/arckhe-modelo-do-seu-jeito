@@ -82,7 +82,7 @@ Los comandos se escribieron para Linux y macOS. Windows no se ha verificado.
    python ../../kit/responder.py --modelo ../../modelos/original --instrucao instrucao-forte.txt --saida ../../respostas/instruido.jsonl
    python ../../kit/avaliar.py --original ../../respostas/original.jsonl --instruido ../../respostas/instruido.jsonl
    ```
-   Si el resultado es `NADA A CORRIGIR`, detente aquí. Si es `A INSTRUÇÃO RESOLVE`, usa las instrucciones y no edites el modelo.
+   Si el resultado es `NADA A CORRIGIR`, detente aquí. Si es `A INSTRUÇêO RESOLVE`, usa las instrucciones y no edites el modelo.
 8. ⚙️ Haz una prueba piloto breve: `heretic --n-trials 12 --n-startup-trials 6 --model ../../modelos/original`
 9. 🧠 Heretic muestra los mejores resultados. Las dos puntuaciones deben ser bajas: la del objetivo y la de divergencia respecto al original (KL). La prueba piloto tiene sentido si bajó la puntuación del objetivo sin que se disparara la divergencia. Para continuar, elige `Run additional trials` en el menú y solicita más intentos. El valor predeterminado de Heretic es 100 en total. Luego elige un resultado y guárdalo en `../../modelos/ajustado`. Con la configuración predeterminada, Heretic estima entre 30 y 40 minutos para este modelo en una RTX 3090. Este kit no midió el tiempo.
 10. ⚙️ Recopila las respuestas de la copia y compara las tres versiones:

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Compara as versões do modelo em casos que não entraram no ajuste. Rode na pasta do modo.
+"""Compara as versões do modelo em casos que nêo entraram no ajuste. Rode na pasta do modo.
 
 Só com --original: diz se existe algo a corrigir.
-Com --original e --instruido: diz, antes de editar, se a instrução já resolve.
+Com --original e --instruido: diz, antes de editar, se a instruçêo já resolve.
 Com --modificado: aprova ou reprova a cópia.
-Com --instruido: mostra também se uma boa instrução já resolveria.
+Com --instruido: mostra também se uma boa instruçêo já resolveria.
 
 Saída: 0 = aprovado ou há o que corrigir, 1 = reprovado, 2 = inconclusivo, 3 = nada a corrigir,
-4 = a instrução já resolve.
+4 = a instruçêo já resolve.
 """
 
 import argparse
@@ -109,18 +109,18 @@ def main():
             return 3
         print("HÁ O QUE CORRIGIR: " + "; ".join(falhas_alvo(original, regua.MINIMOS)))
         if "instruido" in medidas and not reprovacoes(original, medidas["instruido"], regua.MINIMOS, regua.COMUM):
-            print("A INSTRUÇÃO RESOLVE: use a instrução forte antes de pensar em editar o modelo.")
+            print("A INSTRUÇêO RESOLVE: use a instruçêo forte antes de pensar em editar o modelo.")
             return 4
         return 0
 
     modificado = medidas["modificado"]
     if not entradas_iguais(casos, original, modificado):
-        print("INCONCLUSIVO: original e modificado não receberam exatamente a mesma entrada.")
+        print("INCONCLUSIVO: original e modificado nêo receberam exatamente a mesma entrada.")
         return 2
     motivos = reprovacoes(original, modificado, regua.MINIMOS, regua.COMUM)
     print("APROVADO" if not motivos else "REPROVADO: " + "; ".join(motivos))
     if "instruido" in medidas and not reprovacoes(original, medidas["instruido"], regua.MINIMOS, regua.COMUM):
-        print("ATENÇÃO: a instrução sozinha também passou. Neste caso, editar o modelo pode não compensar.")
+        print("ATENÇêO: a instruçêo sozinha também passou. Neste caso, editar o modelo pode nêo compensar.")
     return 1 if motivos else 0
 
 
